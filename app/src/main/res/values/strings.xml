@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Bedrock 3D</string>
+    
+    <string name="import_model">Импорт модели</string>
+    <string name="preview">Просмотр</string>
+    <string name="export">Экспорт</string>
+    <string name="select_texture">Выбрать текстуру</string>
+    
+    <string name="loading_model">Загрузка модели...</string>
+    <string name="model_loaded">Модель загружена</string>
+    <string name="no_model_loaded">Сначала загрузите модель</string>
+    
+    <string name="error">Ошибка</string>
+    <string name="error_loading">Ошибка загрузки: %s</string>
+    <string name="permission_required">Требуется разрешение для сохранения файлов</string>
+    
+    <string name="model_name">Название модели</string>
+    <string name="namespace">Namespace</string>
+    <string name="scale">Масштаб</string>
+    <string name="custom_scale">Пользовательский</string>
+    
+    <string name="rotate">Вращение</string>
+    <string name="pan">Перемещение</string>
+    <string name="zoom">Масштаб</string>
+    <string name="reset">Сброс</string>
+    
+    <string name="export_progress">Экспорт...</string>
+    <string name="export_success">Экспорт завершён</string>
+    <string name="export_error">Ошибка экспорта</string>
+    
+    <string name="about">О приложении</string>
+    <string name="help">Помощь</string>
+    
+    <string name="about_text">Bedrock 3D - конвертер 3D моделей в Minecraft Bedrock Addons\n\nВерсия 1.0.0\n\nПоддерживаемые форматы:\n• GLB/GLTF\n• OBJ\n• FBX</string>
+    <string name="help_text">1. Нажмите \'Импорт модели\' для загрузки 3D файла\n2. Просмотрите модель в 3D\n3. Выберите масштаб и namespace\n4. Нажмите \'Экспорт\' для создания .mcaddon файла\n5. Откройте файл в Minecraft</string>
+    
+    <string name="model_info">Информация о модели</string>
+    <string name="texture_path">Путь к текстуре</string>
+    
+    <string name="scale_025">0.25x (Мини)</string>
+    <string name="scale_05">0.5x (Маленький)</string>
+    <string name="scale_1">1x (По умолчанию)</string>
+    <string name="scale_2">2x (Большой)</string>
+    <string name="scale_4">4x (Огромный)</string>
+    
+    <string name="welcome_message">Добро пожаловать в Bedrock 3D!\n\nЗагрузите 3D модель для начала работы.</string>
+</resources>
