@@ -45,7 +45,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/rotate"
-                style="@style/Widget.MaterialComponents.Button.CompactButton" />
+                android:textSize="12sp"
+                app:cornerRadius="4dp" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/panButton"
@@ -53,7 +54,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="4dp"
                 android:text="@string/pan"
-                style="@style/Widget.MaterialComponents.Button.CompactButton" />
+                android:textSize="12sp"
+                app:cornerRadius="4dp" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/zoomButton"
@@ -61,7 +63,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="4dp"
                 android:text="@string/zoom"
-                style="@style/Widget.MaterialComponents.Button.CompactButton" />
+                android:textSize="12sp"
+                app:cornerRadius="4dp" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/resetButton"
@@ -69,7 +72,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="4dp"
                 android:text="@string/reset"
-                style="@style/Widget.MaterialComponents.Button.CompactButton" />
+                android:textSize="12sp"
+                app:cornerRadius="4dp" />
 
         </LinearLayout>
 
