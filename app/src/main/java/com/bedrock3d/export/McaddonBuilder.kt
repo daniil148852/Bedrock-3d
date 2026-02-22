@@ -5,6 +5,7 @@ import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.google.gson.JsonObject
 import java.io.*
+import java.util.zip.CRC32
 import java.util.zip.ZipEntry
 import java.util.zip.ZipOutputStream
 
@@ -79,22 +80,22 @@ class McaddonBuilder {
         header.addProperty("name", "${model.name} Behavior Pack")
         header.addProperty("description", "Behavior pack for ${model.name} custom entity")
         header.addProperty("uuid", generateUUID())
-        header.addProperty("version", createVersionArray())
-        header.addProperty("min_engine_version", createEngineVersionArray())
+        header.add("version", createVersionArray())
+        header.add("min_engine_version", createEngineVersionArray())
         manifest.add("header", header)
         
         val modules = com.google.gson.JsonArray()
         val module = JsonObject()
         module.addProperty("type", "data")
         module.addProperty("uuid", generateUUID())
-        module.addProperty("version", createVersionArray())
+        module.add("version", createVersionArray())
         modules.add(module)
         manifest.add("modules", modules)
         
         val dependencies = com.google.gson.JsonArray()
         val dep = JsonObject()
         dep.addProperty("uuid", getResourcePackUUID(model))
-        dep.addProperty("version", createVersionArray())
+        dep.add("version", createVersionArray())
         dependencies.add(dep)
         manifest.add("dependencies", dependencies)
         
@@ -109,15 +110,15 @@ class McaddonBuilder {
         header.addProperty("name", "${model.name} Resource Pack")
         header.addProperty("description", "Resource pack for ${model.name} custom entity")
         header.addProperty("uuid", getResourcePackUUID(model))
-        header.addProperty("version", createVersionArray())
-        header.addProperty("min_engine_version", createEngineVersionArray())
+        header.add("version", createVersionArray())
+        header.add("min_engine_version", createEngineVersionArray())
         manifest.add("header", header)
         
         val modules = com.google.gson.JsonArray()
         val module = JsonObject()
         module.addProperty("type", "resources")
         module.addProperty("uuid", generateUUID())
-        module.addProperty("version", createVersionArray())
+        module.add("version", createVersionArray())
         modules.add(module)
         manifest.add("modules", modules)
         
@@ -228,21 +229,13 @@ class McaddonBuilder {
         
         baos.write(intToBytes(width))
         baos.write(intToBytes(height))
-        baos.write(8)
-        baos.write(6)
-        baos.write(0)
-        baos.write(0)
-        baos.write(0)
+        baos.write(byteArrayOf(8, 6, 0, 0, 0))
         
         val crc = CRC32()
         crc.update("IHDR".toByteArray())
         crc.update(intToBytes(width))
         crc.update(intToBytes(height))
-        crc.update(8)
-        crc.update(6)
-        crc.update(0)
-        crc.update(0)
-        crc.update(0)
+        crc.update(byteArrayOf(8, 6, 0, 0, 0))
         
         baos.write(longToBytes(crc.value))
         
@@ -256,10 +249,10 @@ class McaddonBuilder {
             rawData.write(0)
             for (x in 0 until width) {
                 val idx = (y * width + x) * 4
-                rawData.write(pixels[idx])
-                rawData.write(pixels[idx + 1])
-                rawData.write(pixels[idx + 2])
-                rawData.write(pixels[idx + 3])
+                rawData.write(pixels[idx].toInt() and 0xFF)
+                rawData.write(pixels[idx + 1].toInt() and 0xFF)
+                rawData.write(pixels[idx + 2].toInt() and 0xFF)
+                rawData.write(pixels[idx + 3].toInt() and 0xFF)
             }
         }
         

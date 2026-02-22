@@ -347,9 +347,9 @@ class GLBLoader : ModelLoader {
             .slice()
         
         for (i in 0 until accessor.count) {
-            val x = byteBuffer.float
-            val y = byteBuffer.float
-            val z = byteBuffer.float
+            val x = byteBuffer.getFloat()
+            val y = byteBuffer.getFloat()
+            val z = byteBuffer.getFloat()
             result.add(Vector3(x, y, z))
         }
         
@@ -373,8 +373,8 @@ class GLBLoader : ModelLoader {
             .slice()
         
         for (i in 0 until accessor.count) {
-            val x = byteBuffer.float
-            val y = byteBuffer.float
+            val x = byteBuffer.getFloat()
+            val y = byteBuffer.getFloat()
             result.add(Vector2(x, y))
         }
         
@@ -400,8 +400,8 @@ class GLBLoader : ModelLoader {
         for (i in 0 until accessor.count) {
             val value = when (accessor.componentType) {
                 5121 -> byteBuffer.get().toInt() and 0xFF
-                5123 -> byteBuffer.short.toInt() and 0xFFFF
-                5125 -> byteBuffer.int
+                5123 -> byteBuffer.getShort().toInt() and 0xFFFF
+                5125 -> byteBuffer.getInt()
                 else -> 0
             }
             result.add(value)

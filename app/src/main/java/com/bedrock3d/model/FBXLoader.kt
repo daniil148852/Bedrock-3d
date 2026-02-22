@@ -139,7 +139,7 @@ class FBXParser(private val data: ByteArray) {
         val propertyListLen = readUInt32()
         val nameLen = data[position++].toInt() and 0xFF
         
-        if (endOffset == 0) return null
+        if (endOffset == 0L) return null
         
         val name = String(data, position, nameLen, Charsets.UTF_8)
         position += nameLen
