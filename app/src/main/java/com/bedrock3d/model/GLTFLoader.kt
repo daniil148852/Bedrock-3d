@@ -5,8 +5,8 @@ import android.net.Uri
 import com.google.gson.Gson
 import com.google.gson.JsonObject
 import com.google.gson.JsonParser
+import java.io.ByteArrayOutputStream
 import java.io.InputStreamReader
-import java.util.zip.ZipInputStream
 import java.nio.ByteBuffer
 import java.nio.ByteOrder
 
@@ -171,8 +171,14 @@ class GLBLoader : ModelLoader {
             val inputStream = context.contentResolver.openInputStream(uri)
                 ?: return Result.failure(Exception("Cannot open file"))
             
-            val buffer = inputStream.readAllBytes()
+            val baos = ByteArrayOutputStream()
+            val tempBuffer = ByteArray(4096)
+            var bytesRead: Int
+            while (inputStream.read(tempBuffer).also { bytesRead = it } != -1) {
+                baos.write(tempBuffer, 0, bytesRead)
+            }
             inputStream.close()
+            val buffer = baos.toByteArray()
             
             val byteBuffer = ByteBuffer.wrap(buffer).order(ByteOrder.LITTLE_ENDIAN)
             

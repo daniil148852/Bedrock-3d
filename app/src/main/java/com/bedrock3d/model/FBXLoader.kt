@@ -2,6 +2,7 @@ package com.bedrock3d.model
 
 import android.content.Context
 import android.net.Uri
+import java.io.ByteArrayOutputStream
 
 class FBXLoader : ModelLoader {
     
@@ -14,10 +15,15 @@ class FBXLoader : ModelLoader {
             val inputStream = context.contentResolver.openInputStream(uri)
                 ?: return Result.failure(Exception("Cannot open file"))
             
-            val data = inputStream.readAllBytes()
+            val buffer = ByteArrayOutputStream()
+            val data = ByteArray(4096)
+            var bytesRead: Int
+            while (inputStream.read(data).also { bytesRead = it } != -1) {
+                buffer.write(data, 0, bytesRead)
+            }
             inputStream.close()
             
-            val parser = FBXParser(data)
+            val parser = FBXParser(buffer.toByteArray())
             val result = parser.parse()
             
             Result.success(result)
