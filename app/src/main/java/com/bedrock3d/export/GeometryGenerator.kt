@@ -31,10 +31,10 @@ class GeometryGenerator {
         val mainBone = JsonObject()
         mainBone.addProperty("name", "root")
         
-        val pivot = JsonObject()
-        pivot.addProperty(0, 0.0)
-        pivot.addProperty(1, 0.0)
-        pivot.addProperty(2, 0.0)
+        val pivot = JsonArray()
+        pivot.add(0.0)
+        pivot.add(0.0)
+        pivot.add(0.0)
         mainBone.add("pivot", pivot)
         
         val cubes = generateCubesFromMeshes(scaledModel.meshes, textureWidth, textureHeight)

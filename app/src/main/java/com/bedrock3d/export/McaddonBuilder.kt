@@ -206,7 +206,7 @@ class McaddonBuilder {
     private fun encodePng(pixels: ByteArray, width: Int, height: Int): ByteArray {
         val baos = ByteArrayOutputStream()
         
-        val signature = byteArrayOf(0x89, 0x50, 0x4E, 0x47, 0x0D, 0x0A, 0x1A, 0x0A)
+        val signature = byteArrayOf(0x89.toByte(), 0x50, 0x4E, 0x47, 0x0D, 0x0A, 0x1A, 0x0A)
         baos.write(signature)
         
         val ihdr = createIHDRChunk(width, height)

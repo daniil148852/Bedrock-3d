@@ -343,13 +343,13 @@ class GLBLoader : ModelLoader {
         
         val byteBuffer = ByteBuffer.wrap(buffer)
             .order(ByteOrder.LITTLE_ENDIAN)
-            .position(bufferView.byteOffset + accessor.byteOffset)
-            .slice()
+        byteBuffer.position(bufferView.byteOffset + accessor.byteOffset)
+        val slicedBuffer = byteBuffer.slice()
         
         for (i in 0 until accessor.count) {
-            val x = byteBuffer.getFloat()
-            val y = byteBuffer.getFloat()
-            val z = byteBuffer.getFloat()
+            val x = slicedBuffer.getFloat()
+            val y = slicedBuffer.getFloat()
+            val z = slicedBuffer.getFloat()
             result.add(Vector3(x, y, z))
         }
         
@@ -369,12 +369,12 @@ class GLBLoader : ModelLoader {
         
         val byteBuffer = ByteBuffer.wrap(buffer)
             .order(ByteOrder.LITTLE_ENDIAN)
-            .position(bufferView.byteOffset + accessor.byteOffset)
-            .slice()
+        byteBuffer.position(bufferView.byteOffset + accessor.byteOffset)
+        val slicedBuffer = byteBuffer.slice()
         
         for (i in 0 until accessor.count) {
-            val x = byteBuffer.getFloat()
-            val y = byteBuffer.getFloat()
+            val x = slicedBuffer.getFloat()
+            val y = slicedBuffer.getFloat()
             result.add(Vector2(x, y))
         }
         
@@ -394,14 +394,14 @@ class GLBLoader : ModelLoader {
         
         val byteBuffer = ByteBuffer.wrap(buffer)
             .order(ByteOrder.LITTLE_ENDIAN)
-            .position(bufferView.byteOffset + accessor.byteOffset)
-            .slice()
+        byteBuffer.position(bufferView.byteOffset + accessor.byteOffset)
+        val slicedBuffer = byteBuffer.slice()
         
         for (i in 0 until accessor.count) {
             val value = when (accessor.componentType) {
-                5121 -> byteBuffer.get().toInt() and 0xFF
-                5123 -> byteBuffer.getShort().toInt() and 0xFFFF
-                5125 -> byteBuffer.getInt()
+                5121 -> slicedBuffer.get().toInt() and 0xFF
+                5123 -> slicedBuffer.getShort().toInt() and 0xFFFF
+                5125 -> slicedBuffer.getInt()
                 else -> 0
             }
             result.add(value)
